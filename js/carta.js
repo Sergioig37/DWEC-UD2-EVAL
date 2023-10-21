@@ -1,3 +1,4 @@
+
 export default class Carta{
     constructor(palo, nombre){
         this._palo = palo;
@@ -16,6 +17,6 @@ export default class Carta{
         this._nombre = nombre;
     }
     toString(){
-        return nombre+"-"+palo;
+        return this._nombre+"-"+this._palo;
     }
 }
