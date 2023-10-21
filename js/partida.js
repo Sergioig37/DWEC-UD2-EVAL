@@ -12,66 +12,58 @@ export default class Partida {
         this._cartaVolteada;
         this._aciertos = 0;
         this._numeroIntentos = 0;
-        this._cartaEnMazo= function(carta){
-            var yaEsta = false;
-            var i = 0;
-            while (yaEsta == false) {
-                if (this._cartasSeleccionadas[i] == carta) {
-                    yaEsta = true;
-                }
-                i++;
+    }
+
+
+    selecciona() {
+
+        var carta = this._baraja.generarCarta();
+
+        //recuerda cambiar esto para que las cartas no se repitan
+        if (this._cartaEnMazo(carta) == true) {
+            while (this._cartaEnMazo(carta) == true) {
+                carta = this._baraja.generarCarta();
             }
-            return yaEsta;
         }
-    }
-
-selecciona() {
-
-    var carta = this._baraja.generarCarta();
-    if (this._cartaEnMazo(carta) == true) {
-        while (this._cartaEnMazo(carta) == true) {
-            carta = this._baraja.generarCarta();
+        for (let i = 0; i < 2; i++) {
+            this._cartasSeleccionadas.push(carta);
         }
-    }
-    for (let i = 0; i < 2; i++) {
-        this._cartasSeleccionadas.push(carta);
+
     }
 
-}
+    baraja() {
+        this._cartasSeleccionadas.sort(() => Math.random() - 0.5);;
+    }
 
-baraja() {
-    this._cartasSeleccionadas.sort(() => Math.random() - 0.5);;
-}
-
-reparte(){
-    for (let i = 0; i < this._mazo.length; i++) {
-        for (let j = 0; j < this._mazo[i].length; j++) {
-            this._mazo[i][j] = this._cartasSeleccionadas.shift();
+    reparte() {
+        for (let i = 0; i < this._mazo.length; i++) {
+            for (let j = 0; j < this._mazo[i].length; j++) {
+                this._mazo[i][j] = this._cartasSeleccionadas.shift();
+            }
         }
+
     }
 
-}
+    voltea(fila, columna) {
+        this._cartaVolteada = this._mazo[fila][columna];
+        this._numeroIntentos + 1;
+    }
+    compruebaAcierto(fila, columna) {
+        var encontrada = false;
+        if (this._cartaVolteada === this._mazo[fila][columna]) {
+            encontrada = true;
+            this._aciertos + 1;
+        }
+        return encontrada;
+    }
+    haFinalizado() {
+        var finalizado = false;
+        if (this._aciertos == (this._filas * this._columnas)) {
+            finalizado = true;
+        }
+        return finalizado;
+    }
 
-voltea(fila, columna) {
-    this._cartaVolteada = this._mazo[fila][columna];
-    this._numeroIntentos + 1;
-}
-compruebaAcierto(fila, columna) {
-    var encontrada = false;
-    if (this._cartaVolteada === this._mazo[fila][columna]) {
-        encontrada = true;
-        this._aciertos + 1;
-    }
-    return encontrada;
-}
-haFinalizado() {
-    var finalizado = false;
-    if (this._aciertos == (this._filas * this._columnas)) {
-        finalizado = true;
-    }
-    return finalizado;
-}
- 
 
 
 }

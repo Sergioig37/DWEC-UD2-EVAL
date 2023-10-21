@@ -1,4 +1,3 @@
-
 import Partida from "./partida.js";
 
 function mostrarTabla(partida){
@@ -54,7 +53,7 @@ function pedirCarta(partida) {
     columna = prompt("Escoge la columna de la otra carta");
     // Comprobar acierto
     partida.compruebaAcierto(fila, columna);
-    console.log(partida._mazo);
+    
     if (partida.haFinalizado()) {
         console.log("PARTIDA FINALIZADA!!");
     }

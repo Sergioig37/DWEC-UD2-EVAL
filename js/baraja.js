@@ -28,7 +28,7 @@ const nombres = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K"]
         }
 
     generarCarta(){ 
-        var cartaSacada = this._cartas[Math.floor(Math.random()*palos.length+1), Math.floor(Math.random()*nombres.length+1)]
+        var cartaSacada = this._cartas[Math.floor(Math.random()*palos.length+1)][Math.floor(Math.random()*nombres.length+1)]
         return  cartaSacada;
     }
 
