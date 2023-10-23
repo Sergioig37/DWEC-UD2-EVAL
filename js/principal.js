@@ -30,19 +30,34 @@ function jugar() {
 function pedirCarta(partida) {
     mostrarMazo(partida);
     // Pedir carta 1
-    var fila = prompt("Escoge la fila de la carta");
+    var fila = prompt("Escoge la fila de la carta "+ "\n" + partida.Mazo);
    
-    var columna = prompt("Escoge la columna de la carta");
-    
+    var columna = prompt("Escoge la columna de la carta " +partida.Mazo);
+    if(posicionValida(fila, columna, partida)!=true){
+        while(posicionValida(fila, columna, partida)!=true){
+            alert("Fila o columna inválida, prueba otra vez " + "\n" +partida.Mazo);
+            var fila = prompt("Escoge la fila de la carta " + "\n" +partida.Mazo);
+   
+            var columna = prompt("Escoge la columna de la carta " + "\n" +partida.Mazo );
+        }
+    }
+
     // Voltear carta 1
 
     partida.voltea(fila, columna);
     mostrarMazo(partida);
     // Pedir carta 2
-    fila = prompt("Escoge la fila de la otra carta");
+    fila = prompt("Escoge la fila de la otra carta " + "\n" +partida.Mazo);
     
-    columna = prompt("Escoge la columna de la otra carta");
+    columna = prompt("Escoge la columna de la otra carta " + "\n" +partida.Mazo);
+    if(posicionValida(fila, columna, partida)!=true){
+        while(posicionValida(fila, columna, partida)!=true){
+            alert("Fila o columna inválida, prueba otra vez  "+ "\n" +partida.Mazo);
+            var fila = prompt("Escoge la fila de la carta  " + "\n" +partida.Mazo);
    
+            var columna = prompt("Escoge la columna de la carta  "+ "\n" +partida.Mazo);
+        }
+    }
     // Comprobar acierto
     partida.compruebaAcierto(fila, columna);
     mostrarMazo(partida);
@@ -75,23 +90,21 @@ function esEntero(numero){
     return entero;
 }
 
-function esCartaValida(numero,columna, numeroPartida){
+function posicionValida(fila,columna, partida){
     var correcto = false;
-
-    esEntero(fila) &&
-    esEntero(columna) &&
-    fila >= 0 &&
-    fila < partida.Filas &&
-    columna >= 0 &&
-    columna < partida.Columnas
-
-
-
-
-    if(esEntero(numero)==true&&esPositivo(numero)==false&&numero<numeroPartida){
+    if(existeEnElMazo(fila, partida.Filas)==true&&existeEnElMazo(columna, partida.Columnas)==true){
         correcto = true;
     }
     return correcto;
+}
+
+function existeEnElMazo(numero, numeroPartida){
+
+    var existe = false;
+    if(numero<=numeroPartida&&esEntero(numero)==true&&esPositivo(numero)==true){
+        existe = true;
+    }
+    return existe;
 }
 
 function mostrarMazo(partida){
