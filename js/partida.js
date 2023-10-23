@@ -58,6 +58,7 @@ export default class Partida {
         if (this._cartaVolteada === this._mazo[fila][columna]) {
             encontrada = true;
             this._aciertos += 1;
+            this._mazo[fila][columna] = null;
         }
         return encontrada;
     }
@@ -68,7 +69,4 @@ export default class Partida {
         }
         return finalizado;
     }
-
-
-
 }
