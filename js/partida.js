@@ -1,8 +1,19 @@
 import Baraja from "./baraja.js";
 export default class Partida {
-    constructor(filas = 3, columnas = 2) {
-        this._filas = parseInt(filas);
-        this._columnas = parseInt(columnas);
+   
+    constructor(filas, columnas) {
+        if(!parseInt(filas)||filas<2){
+            this._filas = 3
+        }else{
+            this._filas = parseInt(filas);
+        }
+
+        if(!parseInt(columnas)||columnas<2){
+            this._columnas = 2;
+        }else{
+            this._columnas = parseInt(columnas);
+        }
+        
         this._baraja = new Baraja();
         this._cartasSeleccionadas = [];
         this._mazo = new Array(this._filas);
@@ -58,7 +69,7 @@ export default class Partida {
         if (this._cartaVolteada === this._mazo[fila][columna]) {
             encontrada = true;
             this._aciertos += 1;
-            this._mazo[fila][columna] = null;
+           
         }
         return encontrada;
     }
