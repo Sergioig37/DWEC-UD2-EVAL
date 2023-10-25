@@ -64,12 +64,13 @@ export default class Partida {
         this._cartaVolteada = this._mazo[fila][columna];
         this._numeroIntentos += 1;
     }
+    //voltear las dos a la hora de comprobar el acierto, recuerda.s
     compruebaAcierto(fila, columna) {
         var encontrada = false;
         if (this._cartaVolteada === this._mazo[fila][columna]) {
             encontrada = true;
             this._aciertos += 1;
-           
+            this._mazo[fila][columna] = null;
         }
         return encontrada;
     }

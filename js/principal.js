@@ -91,9 +91,6 @@ function pedirCarta(partida) {
             setTimeout(pedirCarta(partida), 5000)
         }
     }
-    // Voltear carta 1
-
-
 }
 
 
@@ -180,7 +177,7 @@ function finPartida(finalizarPartida) {
 }
 
 
-console.log("PARA COÑO");
+
 var partida = escogerSizeTablero();
 empezarJuego(partida);
 pedirCarta(partida);
