@@ -82,13 +82,18 @@ function pedirCarta(partida) {
             columna = preguntarOtraVez(columna, partida.Columnas);
         }
         // Comprobar acierto
-        partida.compruebaAcierto(fila, columna);
+        if (partida.compruebaAcierto(fila, columna) == true) {
+            partida.cambiarANull();
+        }
+
         mostrarMazo(partida);
         if (partida.haFinalizado()) {
             console.log("PARTIDA FINALIZADA!!");
         }
         else {
-            setTimeout(pedirCarta(partida), 5000)
+            setTimeout(function () {
+                pedirCarta(partida);
+            }, 3000);
         }
     }
 }

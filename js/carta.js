@@ -16,6 +16,7 @@ export default class Carta{
     set Nombre(nombre){
         this._nombre = nombre;
     }
+    // permite escribir las cartas.
     toString(){
         return this._nombre+"-"+this._palo;
     }
