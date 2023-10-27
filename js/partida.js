@@ -114,22 +114,24 @@ export default class Partida {
     // este método es original mío y cambia la primera carta seleccionada a null si hemos acertado
     cambiarANull(){
         var encontrada = false;
-        var i=0;
-        var j=0;
+        var i=parseInt(0);
+        var j=parseInt(0);
         //iteramos hasta que encontremos la carta con un while para no
         // tener que hacer más busqueda de lo necesario
-        while(encontrada==false){
-            while(encontrada==false){
-                 if(this._mazo[i][j] = this._cartaVolteada){
+        while(encontrada==false&&i<this._mazo.length){
+            while(encontrada==false&&j<this._mazo[i].length){
+                 if(this._mazo[i][j] == this._cartaVolteada){
                     //si la carta volteada ( que es la primera que eliges) coincide en algún momento
                     //con la posición pues encontrada es true
                     encontrada = true;
+                    this._mazo[i][j] = null;
                 }
-                 j+1;
+                 j+=1;
             }
-             i+1;
+             i+=1;
+             j=0;
         }
         //al salir del bucle cambiamos esa posición por null
-        this._mazo[i][j] = null;
+        
     }
 }
